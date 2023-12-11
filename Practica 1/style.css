@@ -1,0 +1,35 @@
+.foto2{
+    border:double;
+    border-color: rgb(74, 18, 18);
+    border-width: 10px;
+    margin-right:auto;
+    margin-left: auto;
+    display: block;
+    margin-top:7px;
+}
+
+#caja{
+    float:right;
+    width: 335px;
+    height: 235px;
+    border: solid;
+    border-color: black;
+    background-color: brown;
+    border-width: 5px;
+    margin-left:20px;
+}
+
+.foto1{
+    float:left;
+    margin-right: 20px;
+    border:inset;
+    border-width:7px;
+}
+
+p{
+    text-align: justify;
+}
+
+p::first-letter{
+    font-size: 30px;
+}
