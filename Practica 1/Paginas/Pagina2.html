@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset='utf-8'>
+    <title>Desarrollo del juego</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='../style.css'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body class="bigFont">
+    <div class="background"></div>
+    <header>
+        <img class="centerImage logo" src="../Imagenes/nft_chungus.png" alt="Error con la imagen">
+        <p class="enterprise">Deir Games</p>
+        <h1>Desarrollo</h1>
+    </header>
+    <nav>
+        <table class="navigationBar">
+            <tr>
+                <th><a href="../Index.html">Inicio</a></th>
+                <th><a href="Pagina2.html">Desarrollo</a></th>
+                <th><a href="Pagina3.html">¡Juégalo!</a></th>
+                <th>
+                    <div class="dropdown">
+                        <button class="dropbtn">Sobre mí</button>
+                        <div class="dropdown-content">
+                            <a href="Pagina5.html">Más proyectos</a>
+                            <a href="Pagina6.html">Futuro</a>
+                            <a href="Pagina7.html">Contacto</a>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </nav>
+    <main class="content-box">
+        <br>
+        <p>Como he comentado, me aventuré a desarrollar este juego porque me parecen curiosas sus mecánicas. El
+            principio quería hacerlo lo más simple posible pero con el tiempo fui refinandolo hasta que decidí parar
+            porque sino, no iba a terminar nunca.
+        <p>Otro motivo para hacerlo era refrescar mis conocimientos sobre C# y Unity en general, además de seguir
+            aprendiendo.</p>
+        <br>
+        <p>Para empezar, desglosaré un poco las mecánicas que tiene el juego:</p>
+        <ul>
+            <li>
+                <b>Parámetros del jugador:</b> el jugador tiene, a grandes rasgos: daño por segundo, daño por click y
+                dinero. Es lo básico que necesitamos para que el juego funcione.
+            </li>
+            <li>
+                <b>Enemigos a los que derrotar:</b> el enemigo recibirá daño cuando hagamos click en el, y
+                constantemente recibirá daño relativo a nuestro daño por segundo. Además cuando muera nos dará dinero,
+                cuanto más poderoso el enemigo, más dinero nos dará. Su vida aumenta en función de la zona en la que
+                estemos. Cada 10 zonas el enemigo es un jefe (x10 vida) que tendremos que matar en un tiempo
+                determinado. Éstos enemigos tienen nombres compuestos por dos palabras aleatorias.
+            </li>
+            <li>
+                <b>Mejoras:</b> este juego no tiene sentido sin un sistema en el que mejoremos nuestro daño. Aparecen en
+                el panel izquierdo. Empezamos con solo una y cuando compramos la última disponible, se desbloquea la
+                siguiente para poder comprarla. El precio escala exponencialmente conforme más compramos(lo que me llevó
+                muchos quebraderos de cabeza). Pueden mejorar nuestro DPS o nuestro DPC.
+            </li>
+            <li>
+                <b>Sistema de zonas:</b> para que tenga una progresión, este sistema es esencial. Cada zona consta de 10
+                enemigos. Cuando matamos dichos enemigos, podemos avanzar a la siguiente zona, donde los enemigos serán
+                más fuertes y nos darán más dinero. Cada múltiplo de 10 nos enfrentamos a un jefe, tenemos que matarlo
+                en un tiempo determinado para poder avanzar. Además tenemos diferentes tipos de escenarios según en qué
+                zona nos encontremos (1-10 colinas, 11-20 desierto...).
+            </li>
+            <li>
+                <b>Moneda aleatoria:</b> de vez en cuando aparece una moneda en la pantalla y si estamos atentos, nos da
+                una cantidad considerable de dinero. Esto es para incentivar no estar inactivo ya que, si no la clicamos
+                en un tiempo determinado, desaparece.
+            </li>
+            <li>
+                <b>Tabla de puntuaciones:</b> para crear cierta competitividad, hice una tabla de puntiaciones basada en
+                la API de <a href="https://lootlocker.com/">LootLocker</a>. Esto me dio mucho trabajo, ya que nunca
+                había usado nada parecido y de temas online se más bien poco.
+            </li>
+            <li>
+                <b>Sistema de inactividad:</b> si bien podemos avanzar más rapido estando activos en el juego, creé un
+                sistema que hace que mates enemigos aunque estés desconectado, de modo que puedes cerrar el juego sin
+                preocuparte de que en ese tiempo no avanzarás.
+            </li>
+            <li>
+                <b>Arte:</b> no soy un experto en el tema y tampoco hice este juego para lucrarme, sino como proyecto
+                personal, de modo que los modelos 3D son assets gratuitos de la <a
+                    href="https://assetstore.unity.com/">asset store de Unity</a> y las imágenes, la mayoría, son arte
+                gratuito que puedes encontrar por internet. Las tablas de interfaz, barra de vida y algunas cosas más sí
+                me vi capaz de hacerlas, asi que son mías.
+            </li>
+            <li>
+                <b>Sistema de habilidades:</b> cada X niveles que avancemos, desbloquearemos una nueva habilidad. Éstas
+                tienen diferentes efectos como aumentar nuestro daño permanentemente, añadir un clicker automático o
+                hacer clicks críticos.
+            </li>
+            <li>
+                <b>Sistema de guardado:</b> el juego guarda automáticamente cada 10 segundos, y tambien cuando lo
+                cerramos. Le tuve que dedicar bastante tiempo, entre otras cosas porque hay que pasar todos los datos a
+                datos simples(int,bool,float,string).
+            </li>
+            <li>
+                <b>Diseño responsive:</b> mi monitor es de aspect ratio 21:9, y llegado el momento, me di cuenta de que
+                si lo jugaba en un monitor de 16:9 se descuadraba todo el juego. Entonces tuve que pasarme 2 días
+                haciendo que el juego se adaptara a varios aspect ratios.
+            </li>
+        </ul>
+        <p class="separateTop">Si entramos un poco más profundo en el desarrollo, las mayores dificultades fueron:
+        </p>
+        <ul>
+            <li>
+                <b>Números demasiado grandes:</b> al ser juegos exponenciales, este tipo de juegos llegan muy fácilmente
+                al límite de los <i>int</i> y <i>long</i>. En primer lugar, tardé muchísimo en figurarme cual podría ser
+                el problema de que los números se volviesen negativos en la zona número 30. Cuando por fin logré
+                saberlo, tuve que arreglarmelas para sobrepasar ese límite. Por suerte encontré unas librerías de una
+                persona que tuvo el mismo problema. Después tuve que remodelar el juego para que usara esas librerías, y
+                adaptarlas a mi juego para que se mostraran bien los datos, según como de grande era el número. Éstas
+                librerías usan la notación científica, por lo que pueden llegar mucho mas lejos que los enteros y los
+                long.
+            </li>
+            <li>
+                <b>El botón de comprar mejoras:</b> éste boton hace muchas más cosas de las que parece, entre otras
+                tiene la fórmula de aumentar de precio según el nivel de la mejora, cosa que me llevó días enteros de
+                solucionar. También fue un problema el hecho de que tenemos que poder comprar 1,10,25,50,100 o <b>el
+                    máximo posible</b> de mejoras con el dinero que tenemos disponible.
+            </li>
+            <li>
+                <b>Tabla de puntuaciones:</b> como he comentado, nunca había hecho una y al no saber mucho sobre temas
+                online tuve que aprender a usar la API de LootLocker e implementarla en el juego. Esto fue poco menos
+                que un infierno, ya que casi toda la información estaba desfasada ya que van actualizando la API.
+            </li>
+        </ul>
+
+        <p>Aquí podemos apreciar que efectivamente hay bastantes similitudes entre mi juego y clicker heroes:</p>
+        <div>
+            <img class="centerImage" src="../Imagenes/clicker2.png" alt="X" style='width:95%'>
+        </div>
+        <p class="separateTop"> Al final he quedado contento con el resultado, ya que ha quedado un juego tal y
+            como lo quería (incluso mejor), he refescado mis conocimientos y he aprendido bastante.</p>
+        <p>Algunos puntos a tener en cuenta son que, el juego está diseñado de manera que añadir contenido es
+            tremendamente fácil gracias a los <a
+                href="https://docs.unity3d.com/Manual/class-ScriptableObject.html">scriptable objects</a> de Unity.
+        </p>
+        <p>
+            Si quisiera sacar la versión para movil sería tremendamente facil, ya que prácticamente no hay
+            incompatibilidades entre la version que he hecho y una supuesta versión de móvil.
+        </p>
+        <p>
+            Si bien no es el juego más bonito del mundo, lo hice por pura diversión y aprendizaje, emitiendo casi todo
+            el
+            proceso en <a href="https://www.twitch.tv/deir92">mi canal de twitch</a>. Si en algún momento quiero dejarlo
+            más profesional y comercializarlo, contactaría con un artista para hacer los modelos 3D. También debería
+            cambiar los nombres y fotos de las mejoras ya que al haberlo hecho en directo, las mejoras son personajes
+            famosos o memes, simplemente para rellenar.
+        </p>
+        <br>
+    </main>
+    <footer>
+        <p style="color:rgb(255, 255, 255); text-align: center;">© Deir Games 2022-2023</p>
+    </footer>
+</body>
+
+</html>

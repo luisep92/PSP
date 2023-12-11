@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset='utf-8'>
+    <title>Contacto</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='../style.css'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <div class="background"></div>
+    <header>
+        <img class="centerImage logo" src="../Imagenes/nft_chungus.png" alt="Error con la imagen">
+        <p class="enterprise">Deir Games</p>
+        <h1>Desarrollo</h1>
+    </header>
+    <nav>
+        <table class="navigationBar">
+            <tr>
+                <th><a href="../Index.html">Inicio</a></th>
+                <th><a href="Pagina2.html">Desarrollo</a></th>
+                <th><a href="Pagina3.html">¡Juégalo!</a></th>
+                <th>
+                    <div class="dropdown">
+                        <button class="dropbtn">Sobre mí</button>
+                        <div class="dropdown-content">
+                            <a href="Pagina5.html">Más proyectos</a>
+                            <a href="Pagina6.html">Futuro</a>
+                            <a href="Pagina7.html">Contacto</a>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </nav>
+    <main class="content-box" style="min-width: fit-content;">
+        <form action="#" method="post">
+            <h4>Formulario de contacto</h4>
+            <div>
+                <fieldset>
+                    <legend>Información personal</legend>
+                    <p>
+                        <label for="nombre">Nombre</label>
+                        <input style="font-size: 1.7vw;" size="15" maxlength="20" type="text" id="nombre" name="nombre">
+                    </p>
+                    <p>
+                        <label for="apellidos">Apellidos</label>
+                        <input style="font-size: 1.7vw;" size="20" maxlength="30" type="text" id="apellidos"
+                            name="apellidos">
+                    </p>
+                    <p>
+                        <label for="mail">E-mail</label>
+                        <input style="font-size: 1.7vw;" size="20" maxlength="30" type="email" id="mail" name="mail">
+                    </p>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Por favor, rellene los siguientes campos:</legend>
+                    <p>
+                        <label for="linker">Temas de interés</label>
+                        <select style="font-size: 2.3vw;" name="linker" id="linker">
+                            <option selected value="buscador">Oferta de empleo</option>
+                            <option value="dudas">Dudas</option>
+                            <option value="bugs">Reportar bug</option>
+                            <option value="contacto">Petición de contacto</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </p>
+                    <br>
+                    <p>
+                        <label for="comments">Sugerencias</label>
+                    </p>
+                    <p>
+                        <textarea style="font-size: 1.7vw;" name="comments" id="comments" cols="30" rows="5"></textarea>
+                    </p>
+
+
+                    <p>
+                        <label for="nota">Califica la web</label>
+                    </p>
+                    <p>
+                        <select style="font-size: 2vw;" class="selector" name="nota" id="nota" size="10">
+                            <option value="1"> 1</option>
+                            <option value="2"> 2</option>
+                            <option value="3"> 3</option>
+                            <option value="4"> 4</option>
+                            <option selected value="5">5</option>
+                            <option value="6"> 6</option>
+                            <option value="7"> 7</option>
+                            <option value="8"> 8</option>
+                            <option value="9"> 9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </p>
+                    <p>
+                        <input style="font-size: 1.7vw;" type="radio" name="licencia" id="accept" value="acceptTerms">
+                        <label for="accept">Acepto los términos del contrato de licencia de envío de
+                            información.</label>
+                    </p>
+                    <p>
+                        <input type="radio" checked name="licencia" id="decline" value="declineTerms">
+                        <label for="decline"><b>No</b> acepto los términos del contrato de licencia de envío de
+                            información.</label>
+                    </p>
+                    <p>
+                        <input style="font-size: 1.7vw;" type="checkbox" checked name="recieveInfo" id="recieveInfo"
+                            value="sendInfo">
+                        <label for="recieveInfo">Quiero recibir información sobre las novedades de la web.</label>
+                    </p>
+
+                </fieldset>
+            </div>
+            <div class="centerText">
+                <p>
+                    <input class="bigBtn" type="submit" value="Enviar datos">
+                    <input class="bigBtn" type="reset" value="Borrar datos">
+                </p>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p style="color:rgb(255, 255, 255); text-align: center;">© Deir Games 2022-2023</p>
+    </footer>
+</body>
+
+</html>
