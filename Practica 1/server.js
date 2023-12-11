@@ -32,8 +32,8 @@ function printLog(request, response){
 const requestListener = function (request, response){
     printLog(request, response)
 
+    // En vez de hacer la redireccion con el css, la he hecho con esto
     p = request.url == "/" ? "/index.html" : request.url
-
     const contentType = getContentType(p)
     console.log("Content type: " + contentType)
     console.log("Path: " + p)
@@ -44,8 +44,6 @@ const requestListener = function (request, response){
             response.end("Internal server error")
             return
         }
-        
-
         response.setHeader("Content-Type", contentType);
         response.writeHead(200);
         response.write(data);
