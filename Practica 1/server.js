@@ -40,8 +40,8 @@ const requestListener = function (request, response){
 
     fs.readFile("." + p, (err, data) =>{
         if (err) {
-            response.writeHead(500)
-            response.end("Internal server error")
+            response.writeHead(404)
+            response.end("Page not found")
             return
         }
         response.setHeader("Content-Type", contentType);
