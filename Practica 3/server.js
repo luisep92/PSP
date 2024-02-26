@@ -34,8 +34,23 @@ app.get('/libros/:id', (req, res) => {
 
 // Get all books
 app.get('/libros', (req, res) => {
+    const searchString = req.params.autor; 
     Libro.find().then(result => {
         res.send(result);
+    }).catch(error => {
+        console.error(error);
+        res.status(500).send('Error al obtener libros');
+    });
+});
+
+// Get books filter: autor contains an string that contains the content of searchString. Ejemplares must be less than maxEjemplares
+app.get('/libros/filter/:autor/:ejemplares', (req, res) => {
+    const searchString = req.params.autor; 
+    const maxEjemplares = parseInt(req.params.ejemplares);
+    Libro.find({ autor: { $regex: searchString, $options: 'i'}, 
+                 ejemplares: { $lt: maxEjemplares } })
+        .then(result => {
+            res.send(result);
     }).catch(error => {
         console.error(error);
         res.status(500).send('Error al obtener libros');
