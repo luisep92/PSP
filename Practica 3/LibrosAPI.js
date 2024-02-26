@@ -19,22 +19,8 @@ let Libro = mongoose.model('libros', libroSchema);
 let app = express();
 app.use(express.json());
 
-
-/* localhost:8080/
-Definir la ruta principal
-app.get('/', (req, res) => {
-    console.log("Hola mundo");
-    res.send('¡Hola, mundo!');
-});*/
-
-/* localhost:8080/libros/*
-app.get('/libros/:id', (req, res) => {
-    res.send("Id recibido: "+ req.params.id);
-});*/
-
 // Get all books
 app.get('/libros', (req, res) => {
-    const searchString = req.params.autor; 
     Libro.find().then(result => {
         res.send(result);
     }).catch(error => {
@@ -95,11 +81,8 @@ app.post('/libros/post', (req, res) => {
 // PUT
 app.put('/libros/update/:id', (req, res) => {
     const libroId = req.params.id;
-
-    // Obtener los datos actualizados del cuerpo de la solicitud
     const { titulo, autor, ejemplares } = req.body;
 
-    // Actualizar el libro en la base de datos
     Libro.findByIdAndUpdate(libroId, { titulo, autor, ejemplares }, { new: true })
         .then(libroActualizado => {
             if (!libroActualizado) {
