@@ -43,7 +43,7 @@ app.get('/players/filter/:name/:score', (req, res) => {
     });
 });
 
-// Get book by ID
+// Get player by ID
 app.get('/players/:id', (req, res) => {
     const playerId = req.params.id; 
     Player.findById(playerId)
@@ -95,6 +95,21 @@ app.put('/players/update/:id', (req, res) => {
             res.status(500).send('Error updating player');
         });
 });
+
+// PUT increase X to score of players that have less than Y
+app.put('/players/update/:scoreToIncrease/:maxScore', (req, res) => {
+    const scoreToIncrease = parseInt(req.params.scoreToIncrease);
+    const maxScore = parseInt(req.params.maxScore);
+    Player.updateMany({ score: { $lt: maxScore } }, { $inc: { score: scoreToIncrease } })
+        .then(result => {
+            console.log('Scores updated successfully:', result);
+            res.status(200).send('Scores updated successfully');
+        })
+        .catch(error => {
+            console.error('Error updating scores:', error);
+            res.status(500).send('Error updating scores');
+        });
+});
     
 // DELETE
 app.delete('/players/delete/:id', (req, res) => {
@@ -113,6 +128,8 @@ app.delete('/players/delete/:id', (req, res) => {
             res.status(500).send('Error deleting player');
         });
 });
+
+
 
 // Iniciar el servidor en el puerto 8080
 app.listen(8080, () => {

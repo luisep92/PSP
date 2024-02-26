@@ -12,6 +12,8 @@ public class RestClient : MonoBehaviour
     public string playerID;
     public string nameContains;
     public int minScore;
+    public int maxScore;
+    public int scoreToIncrease;
 
     [Header("POST settings")]
     public string name;
@@ -50,6 +52,11 @@ public class RestClient : MonoBehaviour
     public void DeletePlayer()
     {
         StartCoroutine(DeletePlayerCorr());
+    }
+
+    public void UpdatePlayersConditional()
+    {
+        StartCoroutine(UpdatePlayersConditionalCorr());
     }
 
     public IEnumerator GetAllPlayersCorr()
@@ -91,7 +98,7 @@ public class RestClient : MonoBehaviour
     {
         string url = "http://127.0.0.1:8080/players/post";
 
-        string jsonData = "{\"name\":\"" + name + "\",\"score\":" + minScore + ",\"class\":\"" + clas + "\"}";
+        string jsonData = "{\"name\":\"" + name + "\",\"score\":" + score + ",\"class\":\"" + clas + "\"}";
 
         byte[] byteData = Encoding.UTF8.GetBytes(jsonData);
 
@@ -121,6 +128,21 @@ public class RestClient : MonoBehaviour
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+            Debug.Log("Error al realizar la solicitud: " + request.error);
+        else
+            Debug.Log("Respuesta recibida: " + request.downloadHandler.text);
+    }
+
+    private IEnumerator UpdatePlayersConditionalCorr()
+    {
+        string url = "http://127.0.0.1:8080/players/update/" + scoreToIncrease + "/" + maxScore;
+
+        UnityWebRequest request = UnityWebRequest.Put(url, "");
+        request.method = "PUT";
+        request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
 
         if (request.result != UnityWebRequest.Result.Success)
