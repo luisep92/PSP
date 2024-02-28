@@ -1,0 +1,5 @@
+//MQL
+//Heroe.collection.insertOne({ nombre: "Hulk", poder: "Ira", descripcion: "Se vuelve grande y verde" });
+//Heroe.collection.insertOne({ nombre: "Iron man", poder: "Dinero", descripcion: "Se ha hecho un traje muy chulo" });
+//Heroe.collection.insertOne({ nombre: "Flash", poder: "Velocidad", descripcion: "Va muy rapido" });
+//Heroe.collection.insertOne({ nombre: "Capitan america", poder: "Capitalismo", descripcion: "Tiene un escudo" });
